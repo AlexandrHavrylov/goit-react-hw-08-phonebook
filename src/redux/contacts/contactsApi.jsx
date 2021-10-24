@@ -1,12 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Define a service using a base URL and expected endpoints
 export const contactsApi = createApi({
   reducerPath: "contacts",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://connections-api.herokuapp.com/",
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().Auth;
+      const token = getState().auth.token;
       console.log(token);
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
@@ -20,7 +19,6 @@ export const contactsApi = createApi({
   endpoints: (builder) => ({
     getAllContacts: builder.query({
       query: () => "/contacts",
-
       providesTags: ["Contacts"],
     }),
     createContacts: builder.mutation({

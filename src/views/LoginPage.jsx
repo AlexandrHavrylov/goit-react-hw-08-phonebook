@@ -1,11 +1,12 @@
 import { Label, Button, Input, StyledForm } from "styles/Form.styled";
 import { useState } from "react";
-import { useLoginUserMutation } from "redux/auth/authApi";
+import { useDispatch } from "react-redux";
+import { logInUser } from "redux/auth/authOperation";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [LoginUser] = useLoginUserMutation();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -23,8 +24,7 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    LoginUser({ email, password });
-
+    dispatch(logInUser({ email, password }));
     setEmail("");
     setPassword("");
   };

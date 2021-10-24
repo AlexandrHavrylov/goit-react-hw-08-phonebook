@@ -7,9 +7,9 @@ function ContactsPage() {
   return (
     <>
       <Title>Phonebook</Title>
-      {/* <Form />
+      <Form />
       <Filter />
-      <Contacts /> */}
+      <Contacts />
     </>
   );
 }

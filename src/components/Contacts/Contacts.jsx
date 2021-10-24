@@ -29,8 +29,8 @@ const Contacts = () => {
   return (
     <div>
       <h2>Contacts</h2>
-      {/* {isFetching && <Spinner />}
-      {isError && <p>{error}</p>}
+      {isFetching && <Spinner />}
+      {isError && <p>Ошибка</p>}
       {contacts && (
         <ContactsList>
           {contacts.map(({ id, name, number }) => (
@@ -48,7 +48,7 @@ const Contacts = () => {
             </Contact>
           ))}
         </ContactsList>
-      )} */}
+      )}
     </div>
   );
 };

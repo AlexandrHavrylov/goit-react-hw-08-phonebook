@@ -1,15 +1,20 @@
+import { useSelector } from "react-redux";
+import { Nav } from "styles/Navigation.styled";
 import { Header, StyledNavLink } from "styles/Navigation.styled";
+import LoggedBar from "./LoggedBar";
+import UnloggedBar from "./UnLoggedBar";
 
 const Navigation = () => {
+  const isLogIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <Header>
-      <nav>
+      <Nav>
         <StyledNavLink to="/" exact>
           Home
         </StyledNavLink>
-        <StyledNavLink to="/register"> Регистрация </StyledNavLink>
-        <StyledNavLink to="/login"> Логин </StyledNavLink>
-      </nav>
+        {isLogIn ? <LoggedBar /> : <UnloggedBar />}
+      </Nav>
     </Header>
   );
 };

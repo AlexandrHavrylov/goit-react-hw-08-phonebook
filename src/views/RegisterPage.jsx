@@ -1,12 +1,13 @@
 import { Label, Button, Input, StyledForm } from "styles/Form.styled";
 import { useState } from "react";
-import { useRegisterUserMutation } from "redux/auth/authApi";
+import { useDispatch } from "react-redux";
+import { regUser } from "redux/auth/authOperation";
 
 function RegisterPage() {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [registerUser] = useRegisterUserMutation();
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -27,7 +28,7 @@ function RegisterPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerUser({ name, email, password });
+    dispatch(regUser({ name, email, password }));
     setName("");
     setEmail("");
     setPassword("");
