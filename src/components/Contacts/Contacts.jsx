@@ -10,8 +10,11 @@ import { useSelector } from "react-redux";
 import { Spinner } from "components/Spinner/Spinner";
 
 const Contacts = () => {
-  const { data, error, isError, isFetching } = useGetAllContactsQuery();
+  const { data, isError, isFetching } = useGetAllContactsQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
 
+  console.log(data);
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
   const getFilterContacts = (allContacts, filter) => {
     const normalizedFilterValue = filter.toLowerCase().trim();

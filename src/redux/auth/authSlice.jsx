@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import { regUser, logInUser, logOut } from "./authOperation";
 
 const initialState = {
@@ -9,21 +10,25 @@ const initialState = {
 };
 
 const auth = createSlice({
-  name: "counter",
+  name: "auth",
   initialState,
   reducers: {},
   extraReducers: {
-    [regUser.fulfilled]: (state, action) => {
+    [regUser.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [logInUser.fulfilled]: (state, action) => {
+    [logInUser.pending]() {
+      console.log("asdasd");
+    },
+    [logInUser.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [logOut.fulfilled]: (state) => {
+
+    [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;

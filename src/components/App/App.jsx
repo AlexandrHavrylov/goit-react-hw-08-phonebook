@@ -3,6 +3,8 @@ import { Route, Switch } from "react-router";
 import Navigation from "components/Navigation/Navigation";
 import { Suspense, lazy } from "react";
 import { StyledLoader } from "styles/App.styled";
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 const ContactsPage = lazy(() => import("views/ContactsPage"));
 const RegisterPage = lazy(() => import("views/RegisterPage"));
@@ -15,15 +17,15 @@ function App() {
       <MainContainer>
         <Suspense fallback={<StyledLoader type="ThreeDots" color="gray" />}>
           <Switch>
-            <Route path="/" exact>
+            <PrivateRoute path="/" exact redirectTo="/login">
               <ContactsPage />
-            </Route>
-            <Route path="/register" exact>
+            </PrivateRoute>
+            <PublicRoute path="/register" exact redirectTo="/" restricted>
               <RegisterPage />
-            </Route>
-            <Route path="/login" exact>
+            </PublicRoute>
+            <PublicRoute path="/login" exact redirectTo="/" restricted>
               <LoginPage />
-            </Route>
+            </PublicRoute>
           </Switch>
         </Suspense>
       </MainContainer>

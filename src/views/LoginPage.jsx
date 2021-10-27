@@ -54,7 +54,7 @@ function LoginPage() {
           />
         </Label>
 
-        <Button type="submit">Зарегистрировать</Button>
+        <Button type="submit">Войти</Button>
       </StyledForm>
     </div>
   );
