@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { regUser, logInUser, logOut } from "./authOperation";
 
 const initialState = {
@@ -19,16 +20,21 @@ const auth = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [logInUser.pending]() {
-      console.log("asdasd");
+    [regUser.rejected]() {
+      toast.error(
+        "Введены некоректные данные либо такой пользователь уже зарегистрирован"
+      );
     },
+
     [logInUser.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [logInUser.rejected](state, action) {
-      state = initialState;
+    [logInUser.rejected]() {
+      toast.error(
+        "Введены некоректные данные либо такой пользователь не зарегистрирован"
+      );
     },
 
     [logOut.fulfilled](state) {

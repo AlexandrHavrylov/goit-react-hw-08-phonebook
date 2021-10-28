@@ -3,6 +3,8 @@ import { ContactInfo } from "styles/Contacts.styled";
 import { Contact } from "styles/Contacts.styled";
 import { DeleteBtn } from "styles/Contacts.styled";
 import { ImAddressBook } from "react-icons/im";
+import { AiFillDelete } from "react-icons/ai";
+
 import { ContactsList } from "styles/Contacts.styled";
 import { useGetAllContactsQuery } from "redux/contacts/contactsApi";
 import { useDeleteContactMutation } from "redux/contacts/contactsApi";
@@ -14,7 +16,6 @@ const Contacts = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  console.log(data);
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
   const getFilterContacts = (allContacts, filter) => {
     const normalizedFilterValue = filter.toLowerCase().trim();
@@ -43,10 +44,12 @@ const Contacts = () => {
               </ContactInfo>
               <DeleteBtn
                 disabled={isLoading}
-                onClick={() => deleteContact(id)}
+                onClick={() => {
+                  deleteContact(id);
+                }}
                 type="button"
               >
-                Delete
+                <AiFillDelete />
               </DeleteBtn>
             </Contact>
           ))}

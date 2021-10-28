@@ -18,6 +18,28 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const Nav = styled.nav`
+  text-align: right;
+`;
+
+// LogedBar
+
+export const LoggedContainer = styled.div`
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
+`;
+export const ExitBtn = styled.button`
+  margin-left: 10px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+
+  cursor: pointer;
+  svg {
+    width: 30px;
+    height: 30px;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
 `;

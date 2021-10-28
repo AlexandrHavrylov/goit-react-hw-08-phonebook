@@ -17,9 +17,14 @@ export const Contact = styled.li`
   font-weight: 500;
   border: 1px gray solid;
   border-radius: 10px;
-  box-shadow: rgb(25 26 27 / 20%) 1px 1px 1px 1px;
+
   :not(:last-child) {
     margin-bottom: 10px;
+  }
+
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: rgb(25 26 27 / 20%) 1px 1px 1px 1px;
   }
 `;
 
@@ -36,15 +41,23 @@ export const ContactInfo = styled.span`
 
 export const DeleteBtn = styled.button`
   display: block;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 10px;
+  margin: 0;
+  padding: 0;
   cursor: pointer;
+  background-color: transparent;
 
   text-align: center;
-  border-radius: 5px;
-  border: 0.5px black solid;
-  &:hover {
-    background-color: tomato;
+  border: none;
+
+  svg {
+    margin: 0;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+
+    &:hover {
+      color: #e24529;
+      transform: scale(1.1);
+    }
   }
 `;

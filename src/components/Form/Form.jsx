@@ -4,9 +4,10 @@ import { useState } from "react";
 
 import { useCreateContactsMutation } from "redux/contacts/contactsApi";
 import { useGetAllContactsQuery } from "redux/contacts/contactsApi";
+import { toast } from "react-toastify";
 
 function Form() {
-  const [createContact] = useCreateContactsMutation();
+  const [createContact, { isSuccess }] = useCreateContactsMutation();
   const { data: contacts } = useGetAllContactsQuery();
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -29,10 +30,12 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    isInContacts
-      ? alert(`${name} is already in contacts`)
-      : createContact({ name, number });
-
+    if (isInContacts) {
+      toast.warning(`${name} уже есть в телефонной книге`);
+    } else {
+      createContact({ name, number });
+      toast.success(`${name} успешно добавлен в контакты`);
+    }
     setName("");
     setNumber("");
   };
